@@ -1,3 +1,4 @@
+
 NEO4J_VERSION = "1.3.1"
 
 gsub_file 'Gemfile', /gem 'sql.*/, "gem 'neo4j', '#{NEO4J_VERSION}'"
