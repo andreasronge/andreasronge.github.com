@@ -1,24 +1,17 @@
+NEO4J_VERSION = "2.0.1"
 
-NEO4J_VERSION = "2.0.0.alpha.5"
-
-gsub_file 'Gemfile', /gem 'sql.*/, "gem 'neo4j', '#{NEO4J_VERSION}'"
-gsub_file 'Gemfile', /gem 'activerecord.*/, "gem 'neo4j', '#{NEO4J_VERSION}'"
- 
-dev_gems = <<END
-
-
-group :development do
-  gem 'rspec-rails'
+gem_group :development, :test do
+  gem "rspec-rails"
 end
 
-END
-inject_into_file 'Gemfile', dev_gems, :after => "#{NEO4J_VERSION}'"
+gem "neo4j", ">= #{NEO4J_VERSION}"
 
 gsub_file 'config/application.rb', "require 'rails/all'", <<END
 require 'action_controller/railtie'
 require 'action_mailer/railtie'
 require 'active_resource/railtie'
 require 'rails/test_unit/railtie'
+require 'will_paginate/railtie'
 require 'neo4j'
 END
 
