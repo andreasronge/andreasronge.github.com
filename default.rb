@@ -6,15 +6,6 @@ end
 
 gem "neo4j", ">= #{NEO4J_VERSION}"
 
-gsub_file 'config/application.rb', "require 'rails/all'", <<END
-require 'action_controller/railtie'
-require 'action_mailer/railtie'
-require 'active_resource/railtie'
-require 'rails/test_unit/railtie'
-require 'will_paginate/railtie'
-require 'neo4j'
-END
-
 generator = %q[
 
     # Enable Neo4j generators, e.g:  rails generate model Admin --parent User
